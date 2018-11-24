@@ -1,16 +1,16 @@
 #include "carcontrol.h"
 
-CarControl::CarControl()
+CarController::CarController()
 {
-    carPos.x = 120;
-    carPos.y = 300;
-    steer_publisher = node_obj1.advertise<std_msgs::Float32>("Team1_steerAngle",10);
-    speed_publisher = node_obj2.advertise<std_msgs::Float32>("Team1_speed",10);
+    carPos.x = CAR_POSITION_X;
+    carPos.y = CAR_POSITION_Y;
+    steer_publisher = node_obj1.advertise<std_msgs::Float32>(STEER_ANGLE_PUB,10);
+    speed_publisher = node_obj2.advertise<std_msgs::Float32>(SPEED_PUB, 10);
 }
 
-CarControl::~CarControl() {}
+CarController::~CarController() {}
 
-float CarControl::errorAngle(const Point &dst)
+float CarController::errorAngle(const Point &dst)
 {
     if (dst.x == carPos.x) return 0;
     if (dst.y == carPos.y) return (dst.x < carPos.x ? -90 : 90);
@@ -21,19 +21,20 @@ float CarControl::errorAngle(const Point &dst)
     return atan(dx / dy) * 180 / pi;
 }
 
-void CarControl::driverCar(const vector<Point> &left, const vector<Point> &right, float velocity)
+void CarController::driverCar(const vector<Point> &left, const vector<Point> &right, float velocity)
+//void CarController::driverCar(const Point &centerLane, float velocity)
 {
     int i = left.size() - 11;
     float error = preError;
-    while (left[i] == DetectLane::null && right[i] == DetectLane::null) {
+    while (left[i] == POINT_ZERO && right[i] == POINT_ZERO) {
         i--;
         if (i < 0) return;
     }
-    if (left[i] != DetectLane::null && right[i] !=  DetectLane::null)
+    if (left[i] != POINT_ZERO && right[i] != POINT_ZERO)
     {
         error = errorAngle((left[i] + right[i]) / 2);
     } 
-    else if (left[i] != DetectLane::null)
+    else if (left[i] != POINT_ZERO)
     {
         error = errorAngle(left[i] + Point(laneWidth / 2, 0));
     }
@@ -41,6 +42,7 @@ void CarControl::driverCar(const vector<Point> &left, const vector<Point> &right
     {
         error = errorAngle(right[i] - Point(laneWidth / 2, 0));
     }
+    //float error = errorAngle(centerLane);
 
     std_msgs::Float32 angle;
     std_msgs::Float32 speed;

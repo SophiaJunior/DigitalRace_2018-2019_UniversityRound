@@ -57,33 +57,81 @@ include lane_detect/CMakeFiles/api_lane_detection.dir/progress.make
 # Include the compile flags for this target's objects.
 include lane_detect/CMakeFiles/api_lane_detection.dir/flags.make
 
-lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o: lane_detect/CMakeFiles/api_lane_detection.dir/flags.make
-lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o: /home/user/catkin_ws/src/lane_detect/src/detectlane.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o"
-	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o -c /home/user/catkin_ws/src/lane_detect/src/detectlane.cpp
+lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o: lane_detect/CMakeFiles/api_lane_detection.dir/flags.make
+lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o: /home/user/catkin_ws/src/lane_detect/src/imageprocessing.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o"
+	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o -c /home/user/catkin_ws/src/lane_detect/src/imageprocessing.cpp
 
-lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.i"
-	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/catkin_ws/src/lane_detect/src/detectlane.cpp > CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.i
+lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.i"
+	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/catkin_ws/src/lane_detect/src/imageprocessing.cpp > CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.i
 
-lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.s"
-	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/catkin_ws/src/lane_detect/src/detectlane.cpp -o CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.s
+lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.s"
+	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/catkin_ws/src/lane_detect/src/imageprocessing.cpp -o CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.s
 
-lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o.requires:
+lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o.requires:
 
-.PHONY : lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o.requires
+.PHONY : lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o.requires
 
-lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o.provides: lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o.requires
-	$(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o.provides.build
-.PHONY : lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o.provides
+lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o.provides: lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o.requires
+	$(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o.provides.build
+.PHONY : lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o.provides
 
-lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o.provides.build: lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o
+lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o.provides.build: lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o
+
+
+lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o: lane_detect/CMakeFiles/api_lane_detection.dir/flags.make
+lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o: /home/user/catkin_ws/src/lane_detect/src/signdetect.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o"
+	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o -c /home/user/catkin_ws/src/lane_detect/src/signdetect.cpp
+
+lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.i"
+	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/catkin_ws/src/lane_detect/src/signdetect.cpp > CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.i
+
+lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.s"
+	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/catkin_ws/src/lane_detect/src/signdetect.cpp -o CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.s
+
+lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o.requires:
+
+.PHONY : lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o.requires
+
+lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o.provides: lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o.requires
+	$(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o.provides.build
+.PHONY : lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o.provides
+
+lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o.provides.build: lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o
+
+
+lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o: lane_detect/CMakeFiles/api_lane_detection.dir/flags.make
+lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o: /home/user/catkin_ws/src/lane_detect/src/lanedetect.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o"
+	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o -c /home/user/catkin_ws/src/lane_detect/src/lanedetect.cpp
+
+lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.i"
+	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/user/catkin_ws/src/lane_detect/src/lanedetect.cpp > CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.i
+
+lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.s"
+	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/user/catkin_ws/src/lane_detect/src/lanedetect.cpp -o CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.s
+
+lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o.requires:
+
+.PHONY : lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o.requires
+
+lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o.provides: lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o.requires
+	$(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o.provides.build
+.PHONY : lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o.provides
+
+lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o.provides.build: lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o
 
 
 lane_detect/CMakeFiles/api_lane_detection.dir/src/carcontrol.cpp.o: lane_detect/CMakeFiles/api_lane_detection.dir/flags.make
 lane_detect/CMakeFiles/api_lane_detection.dir/src/carcontrol.cpp.o: /home/user/catkin_ws/src/lane_detect/src/carcontrol.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object lane_detect/CMakeFiles/api_lane_detection.dir/src/carcontrol.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/user/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object lane_detect/CMakeFiles/api_lane_detection.dir/src/carcontrol.cpp.o"
 	cd /home/user/catkin_ws/build/lane_detect && /usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/api_lane_detection.dir/src/carcontrol.cpp.o -c /home/user/catkin_ws/src/lane_detect/src/carcontrol.cpp
 
 lane_detect/CMakeFiles/api_lane_detection.dir/src/carcontrol.cpp.i: cmake_force
@@ -107,17 +155,21 @@ lane_detect/CMakeFiles/api_lane_detection.dir/src/carcontrol.cpp.o.provides.buil
 
 # Object files for target api_lane_detection
 api_lane_detection_OBJECTS = \
-"CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o" \
+"CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o" \
+"CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o" \
+"CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o" \
 "CMakeFiles/api_lane_detection.dir/src/carcontrol.cpp.o"
 
 # External object files for target api_lane_detection
 api_lane_detection_EXTERNAL_OBJECTS =
 
-/home/user/catkin_ws/devel/lib/libapi_lane_detection.so: lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o
+/home/user/catkin_ws/devel/lib/libapi_lane_detection.so: lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o
+/home/user/catkin_ws/devel/lib/libapi_lane_detection.so: lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o
+/home/user/catkin_ws/devel/lib/libapi_lane_detection.so: lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o
 /home/user/catkin_ws/devel/lib/libapi_lane_detection.so: lane_detect/CMakeFiles/api_lane_detection.dir/src/carcontrol.cpp.o
 /home/user/catkin_ws/devel/lib/libapi_lane_detection.so: lane_detect/CMakeFiles/api_lane_detection.dir/build.make
 /home/user/catkin_ws/devel/lib/libapi_lane_detection.so: lane_detect/CMakeFiles/api_lane_detection.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/user/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX shared library /home/user/catkin_ws/devel/lib/libapi_lane_detection.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/user/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX shared library /home/user/catkin_ws/devel/lib/libapi_lane_detection.so"
 	cd /home/user/catkin_ws/build/lane_detect && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/api_lane_detection.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -125,7 +177,9 @@ lane_detect/CMakeFiles/api_lane_detection.dir/build: /home/user/catkin_ws/devel/
 
 .PHONY : lane_detect/CMakeFiles/api_lane_detection.dir/build
 
-lane_detect/CMakeFiles/api_lane_detection.dir/requires: lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o.requires
+lane_detect/CMakeFiles/api_lane_detection.dir/requires: lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o.requires
+lane_detect/CMakeFiles/api_lane_detection.dir/requires: lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o.requires
+lane_detect/CMakeFiles/api_lane_detection.dir/requires: lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o.requires
 lane_detect/CMakeFiles/api_lane_detection.dir/requires: lane_detect/CMakeFiles/api_lane_detection.dir/src/carcontrol.cpp.o.requires
 
 .PHONY : lane_detect/CMakeFiles/api_lane_detection.dir/requires

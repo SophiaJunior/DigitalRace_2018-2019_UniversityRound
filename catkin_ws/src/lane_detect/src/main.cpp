@@ -1,32 +1,52 @@
-#include <ros/ros.h>
-#include <image_transport/image_transport.h>
-#include <cv_bridge/cv_bridge.h>
-
-#include <opencv2/highgui/highgui.hpp>
-
-#include "detectlane.h"
+#include "header.h"
+#include "imageprocessing.h"
+#include "signdetect.h"
+#include "lanedetect.h"
 #include "carcontrol.h"
 
+ImageProcessor *ip;
+SignDetector *signDetector;
+LaneDetector *laneDetector;
+CarController *carController;
 
-bool STREAM = true;
+//VideoWriter *writer;
+//VideoCapture *capture;
 
-VideoCapture capture("video.avi");
-DetectLane *detect;
-CarControl *car;
-int skipFrame = 1;
-
-void imageCallback(const sensor_msgs::ImageConstPtr& msg)
+void ImageCallback(const sensor_msgs::ImageConstPtr& msg)
 {
-
     cv_bridge::CvImagePtr cv_ptr;
-    Mat out;
+    Mat colorImg, debugImg, hsvImg, grayImg;
+
     try
     {
+        // From subscriber
         cv_ptr = cv_bridge::toCvCopy(msg, sensor_msgs::image_encodings::BGR8);
-        cv::imshow("View", cv_ptr->image);
-	waitKey(1);
-        detect->update(cv_ptr->image);
-        car->driverCar(detect->getLeftLane(), detect->getRightLane(), 50);
+        waitKey(1);
+
+        // Original
+        colorImg = cv_ptr->image.clone();
+        //resize(colorImg, colorImg, FRAME_SIZE);
+        imshow("View", colorImg);       
+
+        // Debug
+        debugImg = colorImg.clone();
+        
+        // Log to video
+        //writer->write(colorImg);
+        
+        cvtColor(colorImg, hsvImg, CV_BGR2HSV);
+        cvtColor(colorImg, grayImg, CV_BGR2GRAY);
+        signDetector->Update(hsvImg, grayImg);
+
+        // if (signDetector->GetType() != ESignType::NONE)
+        //     rectangle(debugImg, signDetector->GetRect(), Scalar(0, 255, 0));
+        
+        laneDetector->Update(colorImg);
+        carController->driverCar(laneDetector->getLeftLane(), laneDetector->getRightLane(), 50);
+        //laneDetector->Update(cv_ptr->image);
+        //carController->driverCar(Point(0, 0), SPEED);
+
+        imshow("Debug", debugImg);
     }
     catch (cv_bridge::Exception& e)
     {
@@ -34,18 +54,23 @@ void imageCallback(const sensor_msgs::ImageConstPtr& msg)
     }
 }
 
-void videoProcess()
+void VideoProcess(const char *videoPath)
 {
+    VideoCapture capture(videoPath);
+    
     Mat src;
     while (true)
     {
-        capture >> src;
-        if (src.empty()) break;
+        capture.read(src);
+        if (src.empty())
+            break;
         
         imshow("View", src);
-        detect->update(src);
+        laneDetector->Update(src);
         waitKey(30);
     }
+    
+    capture.release();
 }
 
 int main(int argc, char **argv)
@@ -53,23 +78,38 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "image_listener");
     cv::namedWindow("View");
     cv::namedWindow("Binary");
-    cv::namedWindow("Threshold");
     cv::namedWindow("Bird View");
     cv::namedWindow("Lane Detect");
+    cv::namedWindow("Debug");
+    cv::namedWindow("Sign Binary");
 
-    detect = new DetectLane();
-    car = new CarControl();
+    SAFE_ALLOC(laneDetector, LaneDetector);
+    SAFE_ALLOC(carController, CarController);
+    signDetector = new SignDetector("svm_model.xml");
+    //SAFE_ALLOC_P1(signDetector, SignDetector, "svm_model.xml");
 
-    if (STREAM) {
+    //writer = new VideoWriter("out.avi", CV_FOURCC('M','J','P','G'), 30, Size(FRAME_WIDTH, FRAME_HEIGHT));
+        
+    if (STREAM)
+    {
         cv::startWindowThread();
 
         ros::NodeHandle nh;
         image_transport::ImageTransport it(nh);
-        image_transport::Subscriber sub = it.subscribe("Team1_image", 1, imageCallback);
+        image_transport::Subscriber sub = it.subscribe(IMAGE_SUB, 1, ImageCallback);
 
         ros::spin();
-    } else {
-        videoProcess();
     }
+    else
+    {
+        VideoProcess("inp.avi");
+    }
+
+    //writer->release();
+
+    SAFE_FREE(signDetector);
+    SAFE_FREE(laneDetector);
+    SAFE_FREE(carController);
+
     cv::destroyAllWindows();
 }

@@ -224,32 +224,59 @@ src/carcontrol.cpp.s:
 	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/carcontrol.cpp.s
 .PHONY : src/carcontrol.cpp.s
 
-src/detectlane.o: src/detectlane.cpp.o
+src/imageprocessing.o: src/imageprocessing.cpp.o
 
-.PHONY : src/detectlane.o
+.PHONY : src/imageprocessing.o
 
 # target to build an object file
-src/detectlane.cpp.o:
-	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.o
-.PHONY : src/detectlane.cpp.o
+src/imageprocessing.cpp.o:
+	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.o
+.PHONY : src/imageprocessing.cpp.o
 
-src/detectlane.i: src/detectlane.cpp.i
+src/imageprocessing.i: src/imageprocessing.cpp.i
 
-.PHONY : src/detectlane.i
+.PHONY : src/imageprocessing.i
 
 # target to preprocess a source file
-src/detectlane.cpp.i:
-	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.i
-.PHONY : src/detectlane.cpp.i
+src/imageprocessing.cpp.i:
+	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.i
+.PHONY : src/imageprocessing.cpp.i
 
-src/detectlane.s: src/detectlane.cpp.s
+src/imageprocessing.s: src/imageprocessing.cpp.s
 
-.PHONY : src/detectlane.s
+.PHONY : src/imageprocessing.s
 
 # target to generate assembly for a file
-src/detectlane.cpp.s:
-	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/detectlane.cpp.s
-.PHONY : src/detectlane.cpp.s
+src/imageprocessing.cpp.s:
+	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/imageprocessing.cpp.s
+.PHONY : src/imageprocessing.cpp.s
+
+src/lanedetect.o: src/lanedetect.cpp.o
+
+.PHONY : src/lanedetect.o
+
+# target to build an object file
+src/lanedetect.cpp.o:
+	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.o
+.PHONY : src/lanedetect.cpp.o
+
+src/lanedetect.i: src/lanedetect.cpp.i
+
+.PHONY : src/lanedetect.i
+
+# target to preprocess a source file
+src/lanedetect.cpp.i:
+	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.i
+.PHONY : src/lanedetect.cpp.i
+
+src/lanedetect.s: src/lanedetect.cpp.s
+
+.PHONY : src/lanedetect.s
+
+# target to generate assembly for a file
+src/lanedetect.cpp.s:
+	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/lanedetect.cpp.s
+.PHONY : src/lanedetect.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -278,6 +305,33 @@ src/main.cpp.s:
 	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/lane_detect.dir/build.make lane_detect/CMakeFiles/lane_detect.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/signdetect.o: src/signdetect.cpp.o
+
+.PHONY : src/signdetect.o
+
+# target to build an object file
+src/signdetect.cpp.o:
+	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.o
+.PHONY : src/signdetect.cpp.o
+
+src/signdetect.i: src/signdetect.cpp.i
+
+.PHONY : src/signdetect.i
+
+# target to preprocess a source file
+src/signdetect.cpp.i:
+	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.i
+.PHONY : src/signdetect.cpp.i
+
+src/signdetect.s: src/signdetect.cpp.s
+
+.PHONY : src/signdetect.s
+
+# target to generate assembly for a file
+src/signdetect.cpp.s:
+	cd /home/user/catkin_ws/build && $(MAKE) -f lane_detect/CMakeFiles/api_lane_detection.dir/build.make lane_detect/CMakeFiles/api_lane_detection.dir/src/signdetect.cpp.s
+.PHONY : src/signdetect.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -296,12 +350,18 @@ help:
 	@echo "... src/carcontrol.o"
 	@echo "... src/carcontrol.i"
 	@echo "... src/carcontrol.s"
-	@echo "... src/detectlane.o"
-	@echo "... src/detectlane.i"
-	@echo "... src/detectlane.s"
+	@echo "... src/imageprocessing.o"
+	@echo "... src/imageprocessing.i"
+	@echo "... src/imageprocessing.s"
+	@echo "... src/lanedetect.o"
+	@echo "... src/lanedetect.i"
+	@echo "... src/lanedetect.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/signdetect.o"
+	@echo "... src/signdetect.i"
+	@echo "... src/signdetect.s"
 .PHONY : help
 
 

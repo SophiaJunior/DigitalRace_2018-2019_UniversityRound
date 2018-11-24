@@ -1,26 +1,15 @@
 #ifndef CARCONTROL_H
 #define CARCONTROL_H
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include <opencv2/opencv.hpp>
 
-#include <ros/ros.h>
-#include "std_msgs/Float32.h"
+#include "header.h"
 
-#include <vector>
-#include <math.h>
-
-#include "detectlane.h"
-
-using namespace std;
-using namespace cv;
-
-class CarControl 
+class CarController 
 {
 public:
-    CarControl();
-    ~CarControl();
+    CarController();
+    ~CarController();
     void driverCar(const vector<Point> &left, const vector<Point> &right, float velocity);
+    //void driverCar(const Point &centerLane, float velocity);
 
 private:
     float errorAngle(const Point &dst);
@@ -32,10 +21,10 @@ private:
 
     Point carPos;
 
-    float laneWidth = 40;
+    float laneWidth = LANE_WIDTH;
 
-    float minVelocity = 10;
-    float maxVelocity = 50;
+    float minVelocity = MIN_VELOCITY;
+    float maxVelocity = MAX_VELOCITY;
 
     float preError;
 
