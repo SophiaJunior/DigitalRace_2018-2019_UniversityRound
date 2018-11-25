@@ -9,13 +9,15 @@ SignDetector *signDetector;
 LaneDetector *laneDetector;
 CarController *carController;
 
+Mat debugImg;
+
 //VideoWriter *writer;
 //VideoCapture *capture;
 
 void ImageCallback(const sensor_msgs::ImageConstPtr& msg)
 {
     cv_bridge::CvImagePtr cv_ptr;
-    Mat colorImg, debugImg, hsvImg, grayImg;
+    Mat colorImg;
 
     try
     {
@@ -34,18 +36,28 @@ void ImageCallback(const sensor_msgs::ImageConstPtr& msg)
         // Log to video
         //writer->write(colorImg);
         
-        cvtColor(colorImg, hsvImg, CV_BGR2HSV);
-        cvtColor(colorImg, grayImg, CV_BGR2GRAY);
-        signDetector->Update(hsvImg, grayImg);
+        signDetector->Update(colorImg);
 
-        // if (signDetector->GetType() != ESignType::NONE)
-        //     rectangle(debugImg, signDetector->GetRect(), Scalar(0, 255, 0));
-        
+        ESignType signType = signDetector->GetType();
+        Rect signRect = signDetector->GetRect();
+
+        if (signType != ESignType::NONE)
+        {
+            cout << (signType == ESignType::TURN_LEFT ? "Turn left" : "Turn right") << endl;
+
+            rectangle(debugImg, signRect, Scalar(0, 0, 255));
+            putText(debugImg, 
+                (signType == ESignType::TURN_LEFT ? "Turn left" : "Turn right"), 
+                Point(signRect.x, signRect.y),
+                CV_FONT_HERSHEY_COMPLEX_SMALL,
+                0.5,
+                Scalar(0, 0, 255)
+            );
+        }
+
         laneDetector->Update(colorImg);
-        carController->driverCar(laneDetector->getLeftLane(), laneDetector->getRightLane(), 50);
-        //laneDetector->Update(cv_ptr->image);
-        //carController->driverCar(Point(0, 0), SPEED);
-
+        carController->DriverCar(laneDetector->getLeftLane(), laneDetector->getRightLane(), SPEED);
+        
         imshow("Debug", debugImg);
     }
     catch (cv_bridge::Exception& e)
@@ -54,23 +66,12 @@ void ImageCallback(const sensor_msgs::ImageConstPtr& msg)
     }
 }
 
-void VideoProcess(const char *videoPath)
+void ImageProcess(const char *path)
 {
-    VideoCapture capture(videoPath);
-    
-    Mat src;
-    while (true)
-    {
-        capture.read(src);
-        if (src.empty())
-            break;
-        
-        imshow("View", src);
-        laneDetector->Update(src);
-        waitKey(30);
-    }
-    
-    capture.release();
+    Mat src = imread(path);
+    imshow("View", src);
+    //laneDetector->Update(src);
+    waitKey(0);
 }
 
 int main(int argc, char **argv)
@@ -82,11 +83,13 @@ int main(int argc, char **argv)
     cv::namedWindow("Lane Detect");
     cv::namedWindow("Debug");
     cv::namedWindow("Sign Binary");
+    //cv::namedWindow("crop");
 
     SAFE_ALLOC(laneDetector, LaneDetector);
     SAFE_ALLOC(carController, CarController);
-    signDetector = new SignDetector("svm_model.xml");
-    //SAFE_ALLOC_P1(signDetector, SignDetector, "svm_model.xml");
+
+    //signDetector = new SignDetector("svm_model.xml");
+    SAFE_ALLOC_P1(signDetector, SignDetector, "svm_model.xml");
 
     //writer = new VideoWriter("out.avi", CV_FOURCC('M','J','P','G'), 30, Size(FRAME_WIDTH, FRAME_HEIGHT));
         
@@ -102,7 +105,8 @@ int main(int argc, char **argv)
     }
     else
     {
-        VideoProcess("inp.avi");
+        //ImageProcess("test.png");
+        //VideoProcess("inp.avi");
     }
 
     //writer->release();

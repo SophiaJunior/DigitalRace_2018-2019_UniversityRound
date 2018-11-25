@@ -1,5 +1,5 @@
-#ifndef IMAGEPROCESSOR_H
-#define IMAGEPROCESSOR_H
+#ifndef IMAGE_PROCESSING_H
+#define IMAGE_PROCESSING_H
 
 #include "header.h"
 

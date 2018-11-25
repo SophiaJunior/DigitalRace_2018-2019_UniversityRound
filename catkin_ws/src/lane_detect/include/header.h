@@ -23,7 +23,7 @@
 #include <algorithm>
 #include <fstream>
 
-// namespaces
+// Namespaces
 using namespace std;
 using namespace cv;
 using namespace cv::ml;
@@ -32,7 +32,7 @@ using namespace cv::ml;
 #define SAFE_ALLOC_P1(p, T, param1) { if (!p) p = new T(param1); }
 #define SAFE_FREE(p) { if (p) delete p; }
 
-// pre-definition
+// Pre-definition
 class ImageProcessor;
 class LaneDetector;
 class CarController;
@@ -43,6 +43,7 @@ extern ImageProcessor *ip;
 extern LaneDetector *laneDetector;
 extern CarController *carController;
 extern SignDetector *signDetector;
+extern Mat debugImg;
 
 // macros
 #define TEAM_NAME "Team1"
@@ -51,6 +52,7 @@ extern SignDetector *signDetector;
 #define STEER_ANGLE_PUB "Team1_steerAngle"
 
 #define STREAM true
+#define USE_ML false
 #define SKIP_FRAME 1
 
 #define SPEED 50
@@ -61,8 +63,8 @@ extern SignDetector *signDetector;
 #define RECT_ZERO Rect(0, 0, 0, 0)
 #define PI 3.14f
 
-#define FRAME_WIDTH 320
-#define FRAME_HEIGHT 240
+#define FRAME_WIDTH 640
+#define FRAME_HEIGHT 480
 #define FRAME_SIZE Size(FRAME_WIDTH, FRAME_HEIGHT)
 
 // DetectLane macros

@@ -21,7 +21,7 @@ float CarController::errorAngle(const Point &dst)
     return atan(dx / dy) * 180 / pi;
 }
 
-void CarController::driverCar(const vector<Point> &left, const vector<Point> &right, float velocity)
+void CarController::DriverCar(const vector<Point> &left, const vector<Point> &right, float velocity)
 //void CarController::driverCar(const Point &centerLane, float velocity)
 {
     int i = left.size() - 11;

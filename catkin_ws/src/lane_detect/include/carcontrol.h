@@ -1,5 +1,5 @@
-#ifndef CARCONTROL_H
-#define CARCONTROL_H
+#ifndef CAR_CONTROL_H
+#define CAR_CONTROL_H
 
 #include "header.h"
 
@@ -8,7 +8,7 @@ class CarController
 public:
     CarController();
     ~CarController();
-    void driverCar(const vector<Point> &left, const vector<Point> &right, float velocity);
+    void DriverCar(const vector<Point> &left, const vector<Point> &right, float velocity);
     //void driverCar(const Point &centerLane, float velocity);
 
 private:
