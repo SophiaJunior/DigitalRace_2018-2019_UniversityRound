@@ -8,10 +8,10 @@ SignDetector::SignDetector(const char *modelPath)
 	if (USE_ML)
 	{
 		m_hog = HOGDescriptor(SIGN_SIZE,
-			Size(SIGN_SIZE.width / 2, SIGN_SIZE.height / 2),
-			Size(SIGN_SIZE.width / 4, SIGN_SIZE.height / 4),
-			Size(SIGN_SIZE.width / 4, SIGN_SIZE.height / 4),
-			9);
+							  Size(SIGN_SIZE.width / 2, SIGN_SIZE.height / 2),
+							  Size(SIGN_SIZE.width / 4, SIGN_SIZE.height / 4),
+							  Size(SIGN_SIZE.width / 4, SIGN_SIZE.height / 4),
+							  9);
 
 		m_svm = SVM::load(modelPath);
 
@@ -23,7 +23,6 @@ SignDetector::SignDetector(const char *modelPath)
 		//m_svm = Algorithm::load<SVM>(modelPath);
 		//m_svm->load(modelPath);
 	}
-	
 }
 
 bool SignDetector::Detect(const Mat &binImg)
@@ -40,15 +39,14 @@ bool SignDetector::Detect(const Mat &binImg)
 	if (m_contours.size())
 	{
 		// sort contours by decreasing of bounding box area
-		sort(m_contours.begin(), m_contours.end(), [](const vector<Point> &c1, const vector<Point> &c2) 
-		{
+		sort(m_contours.begin(), m_contours.end(), [](const vector<Point> &c1, const vector<Point> &c2) {
 			Rect r1 = boundingRect(c1);
 			Rect r2 = boundingRect(c2);
-			
+
 			return r1.area() > r2.area();
 		});
 	}
-	
+
 	// init detected vector
 	m_detectedContours.resize(m_contours.size());
 	fill(m_detectedContours.begin(), m_detectedContours.end(), false);
@@ -64,7 +62,7 @@ bool SignDetector::Detect(const Mat &binImg)
 		Rect rect = boundingRect(m_contours[iContour]);
 		double ellipseArea = PI * (rect.width / 2) * (rect.height / 2);
 		double area = contourArea(m_contours[iContour]);
-	
+
 		m_rects[iContour] = rect;
 
 		// ratios
@@ -72,12 +70,12 @@ bool SignDetector::Detect(const Mat &binImg)
 		double areaPerEllipse = static_cast<double>(area) / ellipseArea;
 		double rectPerFrame = static_cast<double>(rect.area()) / (binImg.size().width * binImg.size().height);
 
-		// check constraints			
+		// check constraints
 		if (rectPerFrame > MIN_SIGN_SIZE_PER_FRAME)
 			if (1 - LIMIT_DIF_SIGN_SIZE < boundWidthPerHeight && boundWidthPerHeight < 1 + LIMIT_DIF_SIGN_SIZE)
 				if (1 - LIMIT_DIF_SIGN_AREA < areaPerEllipse && areaPerEllipse < 1 + LIMIT_DIF_SIGN_AREA)
 				{
-					m_detectedContours[iContour] = true;					
+					m_detectedContours[iContour] = true;
 					detected = true;
 				}
 	}
@@ -113,7 +111,7 @@ ESignType SignDetector::IpRecognize(const Mat &binImg)
 			Mat crop = mask(m_rects[iContour]);
 			int width = crop.size().width;
 			int height = crop.size().height;
-			
+
 			int countTopLeft = countNonZero(crop(Rect(0, 0, width / 2, height / 2)));
 			int countTopRight = countNonZero(crop(Rect(width / 2, 0, width / 2, height / 2)));
 			int countBottomLeft = countNonZero(crop(Rect(0, height / 2, width / 2, height / 2)));
@@ -122,25 +120,15 @@ ESignType SignDetector::IpRecognize(const Mat &binImg)
 			int minCount = min({countTopLeft, countTopRight, countBottomLeft, countBottomRight});
 			int count = countTopLeft + countTopRight + countBottomLeft + countBottomRight;
 
-			if (countBottomLeft < countTopLeft 
-			&& countBottomLeft < countTopRight
-			&& countBottomLeft < countBottomRight) 
+			if (countBottomLeft < countTopLeft && countBottomLeft < countTopRight && countBottomLeft < countBottomRight)
 			{
-				//cout << "Turn left" << endl;
-				//cout << countTopLeft << ' ' << countTopRight << ' ' << countBottomLeft << ' ' << countBottomRight << endl;
-				//imshow("crop", crop);
 				m_rect = m_rects[iContour];
 				m_type = ESignType::TURN_LEFT;
 				break;
 			}
 
-			if (countBottomRight < countTopLeft
-			&& countBottomRight < countTopRight
-			&& countBottomRight < countBottomLeft)
+			if (countBottomRight < countTopLeft && countBottomRight < countTopRight && countBottomRight < countBottomLeft)
 			{
-				//cout << "Turn right" << endl;
-				//cout << countTopLeft << ' ' << countTopRight << ' ' << countBottomLeft << ' ' << countBottomRight << endl;
-				//imshow("crop", crop);
 				m_rect = m_rects[iContour];
 				m_type = ESignType::TURN_RIGHT;
 				break;
@@ -153,10 +141,10 @@ ESignType SignDetector::IpRecognize(const Mat &binImg)
 ESignType SignDetector::MlRecognize(const Mat &grayImg)
 {
 	cout << "ML" << endl;
-	
+
 	// Reset
 	m_type = ESignType::NONE;
-	
+
 	for (size_t iRect = 0; iRect < m_rects.size(); iRect++)
 	{
 		Rect rect = m_rects[iRect];
@@ -193,12 +181,12 @@ ESignType SignDetector::Recognize(const Mat &binImg, const Mat &grayImg)
 	return (USE_ML ? MlRecognize(grayImg) : IpRecognize(binImg));
 }
 
-ESignType SignDetector::Update(const Mat& colorImg)
+ESignType SignDetector::Update(const Mat &colorImg)
 {
 	Mat hsvImg, grayImg;
 	cvtColor(colorImg, hsvImg, CV_BGR2HSV);
-    cvtColor(colorImg, grayImg, CV_BGR2GRAY);
-        
+	cvtColor(colorImg, grayImg, CV_BGR2GRAY);
+
 	Mat binImg(hsvImg.size(), CV_8UC1, Scalar(0));
 	ip->Binarialize(hsvImg, EColor::BLUE, binImg);
 

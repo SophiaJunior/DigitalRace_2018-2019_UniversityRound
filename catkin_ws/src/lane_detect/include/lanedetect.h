@@ -5,23 +5,27 @@
 
 class LaneDetector
 {
-public:
+  public:
     LaneDetector() = default;
     ~LaneDetector() = default;
 
-private:
+  private:
     vector<Point> leftLane, rightLane;
+    float laneWidth = LANE_WIDTH;
 
-    vector<Mat> splitLayer(const Mat &src, int dir = VERTICAL);
-    vector<vector<Point> > centerRoadSide(const vector<Mat> &src, int dir = VERTICAL);
-    void detectLeftRight(const vector<vector<Point> > &points);
-    Mat laneInShadow(const Mat &src);
-    
-public:
+    Point centerPoint, preCenterPoint;
+
+    vector<Mat> SplitLayer(const Mat &src, int dir = VERTICAL);
+    vector<vector<Point>> CenterRoadSide(const vector<Mat> &src, int dir = VERTICAL);
+    void DetectLeftRight(const vector<vector<Point>> &points);
+
+    void CalculateCenterPoint();
+    void FillLane(Mat &src);
+    Mat PreProcess(const Mat &src);
+
+  public:
     void Update(const Mat &src);
-    
-    vector<Point> getLeftLane();
-    vector<Point> getRightLane();
+    Point GetCenterPoint() { return centerPoint; }
 };
 
 #endif

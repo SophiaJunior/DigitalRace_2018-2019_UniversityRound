@@ -14,7 +14,7 @@ Mat debugImg;
 //VideoWriter *writer;
 //VideoCapture *capture;
 
-void ImageCallback(const sensor_msgs::ImageConstPtr& msg)
+void ImageCallback(const sensor_msgs::ImageConstPtr &msg)
 {
     cv_bridge::CvImagePtr cv_ptr;
     Mat colorImg;
@@ -28,14 +28,14 @@ void ImageCallback(const sensor_msgs::ImageConstPtr& msg)
         // Original
         colorImg = cv_ptr->image.clone();
         //resize(colorImg, colorImg, FRAME_SIZE);
-        imshow("View", colorImg);       
+        imshow("View", colorImg);
 
         // Debug
         debugImg = colorImg.clone();
-        
+
         // Log to video
         //writer->write(colorImg);
-        
+
         signDetector->Update(colorImg);
 
         ESignType signType = signDetector->GetType();
@@ -46,21 +46,20 @@ void ImageCallback(const sensor_msgs::ImageConstPtr& msg)
             cout << (signType == ESignType::TURN_LEFT ? "Turn left" : "Turn right") << endl;
 
             rectangle(debugImg, signRect, Scalar(0, 0, 255));
-            putText(debugImg, 
-                (signType == ESignType::TURN_LEFT ? "Turn left" : "Turn right"), 
-                Point(signRect.x, signRect.y),
-                CV_FONT_HERSHEY_COMPLEX_SMALL,
-                0.5,
-                Scalar(0, 0, 255)
-            );
+            putText(debugImg,
+                    (signType == ESignType::TURN_LEFT ? "Turn left" : "Turn right"),
+                    Point(signRect.x, signRect.y),
+                    CV_FONT_HERSHEY_COMPLEX_SMALL,
+                    0.5,
+                    Scalar(0, 0, 255));
         }
 
         laneDetector->Update(colorImg);
-        carController->DriverCar(laneDetector->getLeftLane(), laneDetector->getRightLane(), SPEED);
-        
+        carController->DriverCar(laneDetector->GetCenterPoint(), SPEED);
+
         imshow("Debug", debugImg);
     }
-    catch (cv_bridge::Exception& e)
+    catch (cv_bridge::Exception &e)
     {
         ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
     }
@@ -92,7 +91,7 @@ int main(int argc, char **argv)
     SAFE_ALLOC_P1(signDetector, SignDetector, "svm_model.xml");
 
     //writer = new VideoWriter("out.avi", CV_FOURCC('M','J','P','G'), 30, Size(FRAME_WIDTH, FRAME_HEIGHT));
-        
+
     if (STREAM)
     {
         cv::startWindowThread();

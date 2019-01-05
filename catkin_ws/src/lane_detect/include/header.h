@@ -10,7 +10,6 @@
 #include <opencv2/core/version.hpp>
 #include <opencv2/core/core.hpp>
 
-
 #include <ros/ros.h>
 #include "std_msgs/Float32.h"
 
@@ -28,9 +27,21 @@ using namespace std;
 using namespace cv;
 using namespace cv::ml;
 
-#define SAFE_ALLOC(p, T) { if (!p) p = new T(); }
-#define SAFE_ALLOC_P1(p, T, param1) { if (!p) p = new T(param1); }
-#define SAFE_FREE(p) { if (p) delete p; }
+#define SAFE_ALLOC(p, T) \
+	{                    \
+		if (!p)          \
+			p = new T(); \
+	}
+#define SAFE_ALLOC_P1(p, T, param1) \
+	{                               \
+		if (!p)                     \
+			p = new T(param1);      \
+	}
+#define SAFE_FREE(p)  \
+	{                 \
+		if (p)        \
+			delete p; \
+	}
 
 // Pre-definition
 class ImageProcessor;
@@ -55,7 +66,7 @@ extern Mat debugImg;
 #define USE_ML false
 #define SKIP_FRAME 1
 
-#define SPEED 50
+#define SPEED 100
 #define SKYLINE 85
 
 #define POINT_ZERO Point(0, 0)
@@ -109,7 +120,7 @@ enum EColor
 {
 	BLACK = 0b1,
 	WHITE = 0b10,
-	BLUE = 0b100	
+	BLUE = 0b100
 };
 
 enum ESignType

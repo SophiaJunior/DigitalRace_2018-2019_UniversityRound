@@ -3,25 +3,22 @@
 
 #include "header.h"
 
-class CarController 
+class CarController
 {
-public:
+  public:
     CarController();
     ~CarController();
-    void DriverCar(const vector<Point> &left, const vector<Point> &right, float velocity);
-    //void driverCar(const Point &centerLane, float velocity);
+    void DriverCar(Point centerPoint, float velocity);
 
-private:
+  private:
     float errorAngle(const Point &dst);
     ros::NodeHandle node_obj1;
     ros::NodeHandle node_obj2;
-    
+
     ros::Publisher steer_publisher;
     ros::Publisher speed_publisher;
 
     Point carPos;
-
-    float laneWidth = LANE_WIDTH;
 
     float minVelocity = MIN_VELOCITY;
     float maxVelocity = MAX_VELOCITY;
