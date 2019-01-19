@@ -1,0 +1,8 @@
+prefix=/home/user/contest_ws/install
+
+Name: team300
+Description: Description of team300
+Version: 0.0.0
+Cflags: -I/home/user/contest_ws/install/include
+Libs: -L/home/user/contest_ws/install/lib -lteam300_lib
+Requires: roscpp

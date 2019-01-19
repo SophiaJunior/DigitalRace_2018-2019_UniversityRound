@@ -1,0 +1,2 @@
+file_server:team300
+-DCATKIN_DEVEL_PREFIX=/home/user/contest_ws/devel -DCMAKE_INSTALL_PREFIX=/home/user/contest_ws/install -G Unix Makefiles

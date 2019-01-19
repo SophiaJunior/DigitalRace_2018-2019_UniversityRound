@@ -1,0 +1,11 @@
+
+<launch>
+
+	<include ns="bridge00" file="$(find rosbridge_server)/launch/rosbridge_websocket.launch">
+		<param name="port" value="9090"/>
+	</include>
+	
+	<arg name="svm_config" default="$(find team300)/config/svm_model.xml" />
+	
+    	<node name="team300" pkg="team300" type="team300" output="screen" args="_image_transport:=compressed $(arg svm_config)" />
+</launch>

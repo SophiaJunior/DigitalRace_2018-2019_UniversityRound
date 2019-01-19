@@ -1,0 +1,1 @@
+/usr/bin/c++ -fPIC   -shared -Wl,-soname,libteam300_lib.so -o /home/user/contest_ws/devel/lib/libteam300_lib.so CMakeFiles/team300_lib.dir/src/imageprocessing.cpp.o CMakeFiles/team300_lib.dir/src/signdetect.cpp.o CMakeFiles/team300_lib.dir/src/lanedetect.cpp.o CMakeFiles/team300_lib.dir/src/carcontrol.cpp.o 
